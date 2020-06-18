@@ -28,10 +28,6 @@ namespace IntegrationTestPractice.Tests
 
             _cluster = await Cluster.ConnectAsync(connectionString, username, password);
 
-            // maybe sleep until cluster is ready to make buckets?
-            // doesn't make sense but I'm trying everything
-            Thread.Sleep(30000);
-
             // try
             // {
                 await _cluster.Buckets.CreateBucketAsync(new BucketSettings

@@ -17,12 +17,6 @@ jobs:
         env:
           CB_USERNAME: Administrator
           CB_PASSWORD: password
-        ports:
-          - 8091:8091
-          - 8092:8092
-          - 8093:8093
-          - 8094:8094
-          - 11210:11210
 
     steps:
     - uses: actions/checkout@v2
