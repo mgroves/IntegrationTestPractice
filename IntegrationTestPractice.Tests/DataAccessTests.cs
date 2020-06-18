@@ -25,7 +25,14 @@ namespace IntegrationTestPractice.Tests
             var password = Environment.GetEnvironmentVariable("COUCHBASE_PASSWORD") ?? "password";
             var bucketName = Environment.GetEnvironmentVariable("COUCHBASE_BUCKET_NAME") ?? "tests";
 
-            _cluster = await Cluster.ConnectAsync(connectionString, username, password);
+            try
+            {
+                _cluster = await Cluster.ConnectAsync(connectionString, username, password);
+            }
+            catch
+            {
+                throw new Exception($"{connectionString} - {username} - {password} - {bucketName}");
+            }
 
             try
             {
@@ -67,12 +74,6 @@ namespace IntegrationTestPractice.Tests
 
             // assert
             Assert.That(actualWidget.Name, Is.EqualTo(expectedWidget.Name));
-        }
-
-        [Test]
-        public void Failed_Test()
-        {
-            Assert.That(true, Is.EqualTo(false));
         }
 
         [TearDown]
