@@ -33,7 +33,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore IntegrationTestPractice
     - name: Test
-      run: dotnet test IntegrationTestPractice.Tests --no-restore --verbosity normal
+      run: dotnet test IntegrationTestPractice.Tests --verbosity detailed
       env:
         COUCHBASE_CONNECTION_STRING: couchbase://cbdb
         COUCHBASE_USERNAME: Administrator
