@@ -35,7 +35,8 @@ namespace IntegrationTestPractice.Tests
                     Name = bucketName,
                     BucketType = BucketType.Couchbase,
                     FlushEnabled = true,
-                    RamQuotaMB = 100
+                    RamQuotaMB = 100,
+                    NumReplicas = 0
                 });
 
                 await _cluster.QueryIndexes.CreatePrimaryIndexAsync(bucketName);

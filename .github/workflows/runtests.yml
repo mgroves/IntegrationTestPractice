@@ -17,6 +17,8 @@ jobs:
         env:
           CB_USERNAME: Administrator
           CB_PASSWORD: password
+          CB_DATARAM: 256
+          CB_SERVICES: kv,n1ql,index
         ports:
           - 8091:8091
           - 8092:8092
