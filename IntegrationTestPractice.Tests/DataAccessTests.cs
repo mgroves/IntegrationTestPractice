@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Couchbase;
 using Couchbase.KeyValue;
@@ -26,6 +27,10 @@ namespace IntegrationTestPractice.Tests
             var bucketName = Environment.GetEnvironmentVariable("COUCHBASE_BUCKET_NAME") ?? "tests";
 
             _cluster = await Cluster.ConnectAsync(connectionString, username, password);
+
+            // maybe sleep until cluster is ready to make buckets?
+            // doesn't make sense but I'm trying everything
+            Thread.Sleep(30000);
 
             // try
             // {
