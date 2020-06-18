@@ -69,6 +69,12 @@ namespace IntegrationTestPractice.Tests
             Assert.That(actualWidget.Name, Is.EqualTo(expectedWidget.Name));
         }
 
+        [Test]
+        public void Failed_Test()
+        {
+            Assert.That(true, Is.EqualTo(false));
+        }
+
         [TearDown]
         public async Task Teardown()
         {
