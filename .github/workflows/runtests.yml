@@ -20,7 +20,7 @@ jobs:
         ports:
           - 8091:8091
           - 8092:8092
-          - 8093:8094
+          - 8093:8093
           - 8094:8094
           - 11210:11210
 
@@ -39,7 +39,7 @@ jobs:
     - name: Test
       run: dotnet test IntegrationTestPractice.Tests --verbosity normal
       env:
-        COUCHBASE_CONNECTION_STRING: cbdb
+        COUCHBASE_CONNECTION_STRING: couchbase://cbdb
         COUCHBASE_USERNAME: Administrator
         COUCHBASE_PASSWORD: password
         COUCHBASE_BUCKET_NAME: tests
