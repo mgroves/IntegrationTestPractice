@@ -27,8 +27,8 @@ namespace IntegrationTestPractice.Tests
 
             _cluster = await Cluster.ConnectAsync(connectionString, username, password);
 
-            try
-            {
+            // try
+            // {
                 await _cluster.Buckets.CreateBucketAsync(new BucketSettings
                 {
                     Name = bucketName,
@@ -38,11 +38,11 @@ namespace IntegrationTestPractice.Tests
                 });
 
                 await _cluster.QueryIndexes.CreatePrimaryIndexAsync(bucketName);
-            }
-            catch
-            {
-                // assume the bucket already exists
-            }
+            // }
+            // catch
+            // {
+            //     // assume the bucket already exists
+            // }
 
             var bucket = await _cluster.BucketAsync(bucketName);
 
