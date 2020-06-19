@@ -39,7 +39,7 @@ jobs:
     - name: Test
       run: dotnet test IntegrationTestPractice.Tests --verbosity normal
       env:
-        COUCHBASE_CONNECTION_STRING: 127.0.0.1
+        COUCHBASE_CONNECTION_STRING: cbdb
         COUCHBASE_USERNAME: Administrator
         COUCHBASE_PASSWORD: password
         COUCHBASE_BUCKET_NAME: testbucket
