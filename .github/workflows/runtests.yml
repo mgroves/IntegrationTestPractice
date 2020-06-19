@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build
-        working-directory: src
+        working-directory: ./
         run: docker-compose --file ci/docker-compose.test.yml build
 
       - name: Run api tests
-        working-directory: src
+        working-directory: ./
         run: docker-compose --file ci/docker-compose.test.yml run api-test
