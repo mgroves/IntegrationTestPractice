@@ -11,35 +11,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    services:
-      couchbase:
-        image: btburnett3/couchbasefakeit:latest
-        env:
-          CB_USERNAME: Administrator
-          CB_PASSWORD: password
-        ports:
-          - 8091:8091
-          - 8092:8092
-          - 8093:8093
-          - 8094:8094
-          - 11210:11210
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
-    - name: Install dependencies
-      run: dotnet restore IntegrationTestPractice
-    - name: Sleep for 30 seconds (hack!)
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '30s'
-    - name: Test
-      run: dotnet test IntegrationTestPractice.Tests --verbosity normal
-      env:
-        COUCHBASE_CONNECTION_STRING: couchbase://localhost
-        COUCHBASE_USERNAME: Administrator
-        COUCHBASE_PASSWORD: password
-        COUCHBASE_BUCKET_NAME: testbucket
+      - uses: actions/checkout@v2
+
+      - name: Build
+        working-directory: src
+        run: docker-compose --file ci/docker-compose.test.yml build
+
+      - name: Run api tests
+        working-directory: src
+        run: docker-compose --file ci/docker-compose.test.yml run api-test
