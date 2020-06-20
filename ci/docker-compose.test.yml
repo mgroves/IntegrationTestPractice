@@ -9,14 +9,14 @@ services:
       - dotnet
       - test
     environment:
-      - COUCHBASE_CONNECTION_STRING=couchbase://localhost
+      - COUCHBASE_CONNECTION_STRING=couchbase://couchbase-server
       - COUCHBASE_USERNAME=Administrator
       - COUCHBASE_PASSWORD=password
       - COUCHBASE_BUCKET_NAME=testbucket
     depends_on:
-      - couchbase
-  couchbase:
-    image: 'btburnett3/couchbasefakeit:latest'
+      - couchbase-server
+  couchbase-server:
+    image: 'btburnett3/couchbasefakeit:enterprise-6.5.0'
     ports:
       - 8091:8091
       - 8092:8092
