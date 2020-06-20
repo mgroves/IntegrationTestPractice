@@ -15,8 +15,10 @@ services:
       - COUCHBASE_BUCKET_NAME=testbucket
     depends_on:
       - couchbase-server
+    volumes:
+      - ./nodestatus:/nodestatus
   couchbase-server:
-    image: 'btburnett3/couchbasefakeit:enterprise-6.5.0'
+    image: btburnett3/couchbasefakeit:enterprise-6.5.0 #couchbase:community-6.5.1
     ports:
       - 8091:8091
       - 8092:8092
@@ -26,3 +28,5 @@ services:
     environment:
       - CB_USERNAME=Administrator
       - CB_PASSWORD=password
+    volumes:
+      - ./nodestatus:/nodestatus
