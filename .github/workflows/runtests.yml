@@ -18,8 +18,8 @@ jobs:
           CB_USERNAME: Administrator
           CB_PASSWORD: password
         volumes:
-          - ./nodestatus:/nodestatus
-          - ./couchbase:/startup
+          - /nodestatus:/nodestatus
+          - /couchbase:/startup
         ports:
           - 8091:8091
           - 8092:8092
@@ -35,10 +35,6 @@ jobs:
         dotnet-version: 3.1.101
     - name: Install dependencies
       run: dotnet restore IntegrationTestPractice
-    - name: Sleep for 30 seconds (hack!)
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '30s'
     - name: Test
       run: dotnet test IntegrationTestPractice.Tests --verbosity normal
       env:
