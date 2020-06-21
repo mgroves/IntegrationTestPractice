@@ -27,19 +27,6 @@ namespace IntegrationTestPractice.Tests
             var password = Environment.GetEnvironmentVariable("COUCHBASE_PASSWORD") ?? "password";
             var bucketName = Environment.GetEnvironmentVariable("COUCHBASE_BUCKET_NAME") ?? "tests";
 
-            if (Directory.Exists("./nodestatus"))
-            {
-                for (var i = 0; i < 60; i++)
-                {
-
-                    if (File.Exists("./nodestatus/initialized"))
-                    {
-                        break;
-                    }
-                    await Task.Delay(1000);
-                }
-            }
-
             _cluster = await Cluster.ConnectAsync(connectionString, username, password);
 
             var bucket = await _cluster.BucketAsync(bucketName);
