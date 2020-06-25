@@ -17,6 +17,11 @@ namespace IntegrationTestPractice
             var result = await _collection.GetAsync(widgetId);
             return result.ContentAs<Widget>();
         }
+
+        public async Task CreateWidget(string widgetId, Widget widget)
+        {
+            await _collection.InsertAsync(widgetId, widget);
+        }
     }
 
     public class Widget

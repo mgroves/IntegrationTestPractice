@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using Couchbase;
 using Couchbase.KeyValue;
-using Couchbase.Management.Buckets;
 using NUnit.Framework;
 
 namespace IntegrationTestPractice.Tests
@@ -52,6 +49,22 @@ namespace IntegrationTestPractice.Tests
 
             // assert
             Assert.That(actualWidget.Name, Is.EqualTo(expectedWidget.Name));
+        }
+
+        [Test]
+        public async Task Does_data_access_create_the_document()
+        {
+            // arrange
+            var widgetId = Guid.NewGuid().ToString();
+            var widget = new Widget {Name = "dota2attitude " + Guid.NewGuid()};
+            _documentsToDelete.Add(widgetId);
+
+            // act
+            await _dal.CreateWidget(widgetId, widget);
+
+            // assert
+            var result = await _collection.GetAsync(widgetId);
+            Assert.That(result.ContentAs<Widget>().Name, Is.EqualTo(widget.Name));
         }
 
         [TearDown]
