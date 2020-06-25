@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Couchbase;
@@ -27,24 +28,6 @@ namespace IntegrationTestPractice.Tests
             var bucketName = Environment.GetEnvironmentVariable("COUCHBASE_BUCKET_NAME") ?? "tests";
 
             _cluster = await Cluster.ConnectAsync(connectionString, username, password);
-
-            // try
-            // {
-                await _cluster.Buckets.CreateBucketAsync(new BucketSettings
-                {
-                    Name = bucketName,
-                    BucketType = BucketType.Couchbase,
-                    FlushEnabled = true,
-                    RamQuotaMB = 100,
-                    NumReplicas = 0
-                });
-
-                await _cluster.QueryIndexes.CreatePrimaryIndexAsync(bucketName);
-            // }
-            // catch
-            // {
-            //     // assume the bucket already exists
-            // }
 
             var bucket = await _cluster.BucketAsync(bucketName);
 
