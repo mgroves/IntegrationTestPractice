@@ -27,5 +27,6 @@ namespace IntegrationTestPractice
     public class Widget
     {
         public string Name { get; set; }
+		public string DeleteMe {get;set;}
     }
 }
